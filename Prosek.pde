@@ -23,6 +23,16 @@ void placeRectangles(int n, float area){
       fill(random(255), random(255), random(255));
       rect(0, 0, w, h);
 
+      fill(0, 90);
+
+      if (w >= h) {
+        ellipse(0, -h/2, d, d);
+        ellipse(0,  h/2, d, d);
+      } else {
+        // long side is vertical → top/bottom midpoints
+        ellipse(-w/2, 0, d, d);
+        ellipse( w/2, 0, d, d);
+      }
     popMatrix();
   }
 }
