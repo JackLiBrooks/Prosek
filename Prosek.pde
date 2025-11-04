@@ -3,26 +3,26 @@ void setup() {
   background(200);
   noStroke();
   noLoop();
-  placeTriangles(1000,60);
+  placeRectangles(1000,60);
 }
 
-void placeTriangles(int n, float area){
-  float side = sqrt(4 * area / sqrt(3));
-  float h = (sqrt(3)/2) * side;
-  float d = side;
+void placeRectangles(int n, float area){
+  float aspect = 1.6;
+  float h = sqrt(area / aspect);
+  float w = aspect * h;
+  float d = min(w, h)*1.5;
+  rectMode(CENTER);
   for (int i = 0; i < n; i++) {
-    float tx = random(width);
-    float ty = random(height);
+    float halfDiag = 0.5 * sqrt(w*w + h*h);
+    float tx = random(halfDiag, width - halfDiag);
+    float ty = random(halfDiag, height - halfDiag);
 
     pushMatrix();
-    translate(tx, ty);
-    rotate(random(360));
-    fill(random(255), random(255), random(255));
+      translate(tx, ty);
+      rotate(random(360));
+      fill(random(255), random(255), random(255));
+      rect(0, 0, w, h);
 
-    triangle(-side/2, h/3, side/2, h/3, 0, -2*h/3);
-    fill(0, 90);
-    ellipse(-side/2, h/3, d, d);
-    ellipse( side/2, h/3, d, d);
     popMatrix();
   }
 }
