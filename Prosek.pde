@@ -2,11 +2,10 @@ void setup() {
   size(1200, 500);
   background(200);
   noStroke();
-  noLoop();
-  placeRectangles(1000);
+  placeMoths(2000);
 }
 
-void placeRectangles(int n) {
+void placeMoths(int n) {
   float area = 70;
   float aspect = 1.6;
   float h = sqrt(area / aspect);
@@ -15,6 +14,11 @@ void placeRectangles(int n) {
   float offset = 4;
   rectMode(CENTER);
   for (int i = 0; i < n; i++) {
+    createMoth(h, w, d, offset);
+  }
+}
+
+void createMoth(float h, float w, float d, float offset){
     float halfDiag = 0.5 * sqrt(w*w + h*h); // find the center of the rectangle
     float tx = random(halfDiag, width - halfDiag);
     float ty = random(halfDiag, height - halfDiag);
@@ -34,5 +38,4 @@ void placeRectangles(int n) {
     fill(random(255), random(255), random(255)); // random rectangle color
     rect(0, 0, w, h);
     popMatrix();
-  }
 }
